@@ -5,6 +5,8 @@ const https = require("https");
 const { json } = require('body-parser');
 const port = 3000;
 const app = express();
+const API_Key = "something-usX";
+const ListID = "something";
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("publicFiles"));
@@ -34,11 +36,11 @@ app.post("/",(req,res)=>{
 
     const jsonData = JSON.stringify(data);
 
-    const url = "https://us17.api.mailchimp.com/3.0/lists/103b36b676";
+    const url = "https://us"+ X +".api.mailchimp.com/3.0/lists/" + List_ID;
 
     const options = {
         method: "POST",
-        auth: "fast1:a1948d1d226dd2018470e25ef42f2c6f-us17"
+        auth: "fast1:" + API_Key
     }
 
     const request = https.request(url,options,function(response){
@@ -62,10 +64,7 @@ app.post("/failure",(req,res)=>{
     res.redirect("/");
 })
 
-// API Key
-// a1948d1d226dd2018470e25ef42f2c6f-us17
-// List ID
-// 103b36b676
+
 
 app.listen(process.env.PORT || 3000,()=>{
     console.log(`Connected to port: ${port}`);

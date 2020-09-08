@@ -4,7 +4,6 @@ const request = require("request");
 const https = require("https");
 const { json } = require('body-parser');
 const port = 3000;
-const port = process.env.PORT; //HEROKU PORT 
 const app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -68,6 +67,6 @@ app.post("/failure",(req,res)=>{
 // List ID
 // 103b36b676
 
-app.listen(port || 3000,()=>{
+app.listen(process.env.PORT || 3000,()=>{
     console.log(`Connected to port: ${port}`);
 })
